@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Kaviya S | Cybersecurity Student &amp; VAPT Enthusiast</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  color-scheme:dark;
+  --bg:#080c12;--surface:#101722;--line:#1d2938;--text:#d5e0ec;--muted:#8394a8;
+  --accent:#3de0c4;--warn:#f5b84b;--crit:#ff6b6b;
+  --sans:'Space Grotesk',system-ui,sans-serif;--mono:'IBM Plex Mono',ui-monospace,Menlo,monospace;
+  box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+}
+html{scroll-behavior:smooth;scroll-padding-top:calc(72px + env(safe-area-inset-top,0px))}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.65;font-size:1.05rem}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+section{padding:88px 0}
+h2{font-size:clamp(1.8rem,4vw,2.5rem);margin:0 0 36px;letter-spacing:-.02em;line-height:1.15}
+h3{margin:0 0 6px;font-size:1.25rem}
+
+/* nav */
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:rgba(8,12,18,.88);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:rgba(8,12,18,.88);z-index:21}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{font-weight:700;text-decoration:none;font-size:1.1rem}
+.logo span{color:var(--accent)}
+.links{display:flex;gap:26px;list-style:none;margin:0;padding:0}
+.links a{text-decoration:none;color:var(--muted);font-size:.95rem;transition:color .2s}
+.links a:hover,.links a.on{color:var(--accent)}
+.burger{display:none;background:none;border:1px solid var(--line);color:var(--text);border-radius:6px;padding:6px 12px;font:inherit;cursor:pointer}
+
+/* hero */
+#hero{position:relative;padding:72px 0 96px;overflow:hidden;min-height:calc(100vh - 64px);display:flex;align-items:center}
+#net{position:absolute;inset:0;width:100%;height:100%;opacity:.55}
+#hero .wrap{position:relative;display:grid;grid-template-columns:1.1fr 1fr;gap:48px;align-items:center}
+.hero-h{font-size:clamp(2.6rem,7vw,4.6rem);line-height:1.02;letter-spacing:-.03em;margin:0 0 14px;font-weight:700}
+.role{color:var(--accent);font-size:1.15rem;margin:0 0 22px}
+.lead{color:var(--muted);max-width:46ch;margin:0 0 30px}
+.btns{display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-block;padding:12px 22px;border-radius:6px;text-decoration:none;font-weight:500;border:1px solid var(--accent);transition:background .2s,color .2s}
+.btn.fill{background:var(--accent);color:#04120f}
+.btn.fill:hover{background:#7af0db}
+.btn.ghost:hover{background:rgba(61,224,196,.12)}
+.term{background:rgba(10,16,25,.92);border:1px solid var(--line);border-radius:10px;font-family:var(--mono);font-size:.84rem;overflow:hidden;box-shadow:0 0 60px rgba(61,224,196,.08)}
+.term-bar{display:flex;gap:7px;padding:11px 14px;border-bottom:1px solid var(--line)}
+.term-bar i{width:10px;height:10px;border-radius:50%;background:var(--line)}
+.term-body{padding:16px;min-height:290px;white-space:pre-wrap;word-break:break-word;line-height:1.7}
+.p{color:var(--accent)}.o{color:var(--text)}.m{color:var(--muted)}.w{color:var(--warn)}.c{color:var(--crit)}
+.cur{display:inline-block;width:8px;height:1em;background:var(--accent);vertical-align:-2px;animation:b 1s steps(1) infinite}
+@keyframes b{50%{opacity:0}}
+
+/* about */
+.about{display:grid;grid-template-columns:1.4fr 1fr;gap:48px}
+.about p{margin:0 0 16px;color:var(--text);max-width:62ch}
+.facts{border-left:2px solid var(--accent);padding-left:22px;display:grid;gap:16px;align-content:start}
+.facts b{display:block;font-size:1.05rem}
+.facts span{color:var(--muted);font-size:.92rem}
+
+/* skills */
+.skills{display:grid;grid-template-columns:repeat(2,1fr);gap:22px 48px}
+.sk-top{display:flex;justify-content:space-between;margin-bottom:8px;font-weight:500}
+.sk-top span{color:var(--accent);font-family:var(--mono);font-size:.9rem}
+.bar{height:8px;background:var(--surface);border-radius:99px;overflow:hidden;border:1px solid var(--line)}
+.fill{height:100%;width:0;background:linear-gradient(90deg,#1fa58f,var(--accent));border-radius:99px;transition:width 1.3s cubic-bezier(.2,.7,.2,1)}
+
+/* timeline */
+.tl{position:relative;padding-left:34px;border-left:2px solid var(--line);margin-left:8px}
+.tl::before{content:"";position:absolute;left:-7px;top:6px;width:12px;height:12px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 5px rgba(61,224,196,.18)}
+.tl .org{color:var(--accent);margin:0 0 14px}
+ul.pts{margin:0;padding-left:20px;color:var(--text)}
+ul.pts li{margin-bottom:8px;max-width:64ch}
+ul.pts li::marker{color:var(--accent)}
+
+/* project */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:22px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:28px;transition:border-color .25s,transform .25s}
+.card:hover{border-color:var(--accent);transform:translateY(-3px)}
+.card.big{grid-column:1/-1;display:grid;grid-template-columns:1fr auto;gap:24px;align-items:start}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.tag{font-family:var(--mono);font-size:.78rem;padding:4px 10px;border-radius:99px;border:1px solid var(--line);color:var(--muted)}
+.sev{display:grid;gap:8px;font-family:var(--mono);font-size:.8rem;min-width:150px}
+.sev div{display:flex;align-items:center;gap:8px;color:var(--muted)}
+.sev i{width:9px;height:9px;border-radius:50%}
+.cert h3{font-size:1.1rem}
+.cert .m{color:var(--muted);font-size:.9rem}
+
+/* contact */
+.contact-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
+.contact-list a,.contact-list button{display:block;text-align:left;font:inherit;color:inherit;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:22px;text-decoration:none;cursor:pointer;transition:border-color .25s}
+.contact-list a:hover,.contact-list button:hover{border-color:var(--accent)}
+.contact-list small{display:block;color:var(--muted);margin-bottom:4px}
+.contact-list strong{word-break:break-all;font-weight:500}
+
+footer{border-top:1px solid var(--line);padding:36px 0;color:var(--muted);font-size:.92rem}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+footer a{text-decoration:none}footer a:hover{color:var(--accent)}
+
+.rv{opacity:0;transform:translateY(14px);transition:opacity .6s,transform .6s}
+.rv.in{opacity:1;transform:none}
+
+@media(max-width:860px){
+  #hero .wrap,.about{grid-template-columns:1fr}
+  .skills{grid-template-columns:1fr}
+  .card.big{grid-template-columns:1fr}
+  .burger{display:block}
+  .links{position:absolute;top:64px;left:0;right:0;flex-direction:column;gap:0;background:var(--bg);border-bottom:1px solid var(--line);display:none}
+  .links.open{display:flex}
+  .links a{display:block;padding:14px 24px}
+  section{padding:64px 0}
+}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .rv{opacity:1;transform:none;transition:none}
+  .fill{transition:none}.cur{animation:none}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a class="logo" href="#top">kaviya<span>.sec</span></a>
+    <button class="burger" aria-label="Toggle menu" aria-expanded="false">Menu</button>
+    <ul class="links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#experience">Internship</a></li>
+      <li><a href="#project">Projects</a></li>
+      <li><a href="#certs">Certifications</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header id="top"></header>
+<section id="hero">
+  <canvas id="net" aria-hidden="true"></canvas>
+  <div class="wrap">
+    <div>
+      <h1 class="hero-h">Kaviya S</h1>
+      <p class="role">Cybersecurity Student | VAPT Enthusiast</p>
+      <p class="lead">I find and document weaknesses in web applications, so they can be fixed before attackers find them.</p>
+      <div class="btns">
+        <a class="btn fill" href="#project">View my work</a>
+        <a class="btn ghost" href="#contact">Get in touch</a>
+      </div>
+    </div>
+    <div class="term" aria-label="Animated terminal scan">
+      <div class="term-bar"><i></i><i></i><i></i></div>
+      <div class="term-body" id="term"></div>
+    </div>
+  </div>
+</section>
+
+<section id="about"><div class="wrap">
+  <h2 class="rv">About me</h2>
+  <div class="about rv">
+    <div>
+      <p>I am a Cybersecurity undergraduate with hands-on experience in Web Application Vulnerability Assessment and Penetration Testing (VAPT).</p>
+      <p>I have practical knowledge of the OWASP Top 10, Burp Suite, Nmap, Linux, and vulnerability assessment methodologies.</p>
+      <p>I am passionate about web application security and keep improving my penetration testing skills.</p>
+    </div>
+    <div class="facts">
+      <div><b>Focus</b><span>Web application security</span></div>
+      <div><b>Methodology</b><span>OWASP Top 10 based assessment</span></div>
+      <div><b>Based in</b><span>Coimbatore, Tamil Nadu</span></div>
+    </div>
+  </div>
+</div></section>
+
+<section id="skills"><div class="wrap">
+  <h2 class="rv">Skills</h2>
+  <div class="skills rv" id="skillGrid"></div>
+</div></section>
+
+<section id="experience"><div class="wrap">
+  <h2 class="rv">Internship</h2>
+  <div class="tl rv">
+    <h3>Cybersecurity Intern</h3>
+    <p class="org">Cyberaran, Coimbatore</p>
+    <ul class="pts">
+      <li>Performed Web Application Vulnerability Assessment based on the OWASP Top 10.</li>
+      <li>Used Burp Suite to identify and document security vulnerabilities.</li>
+    </ul>
+    <div class="tags"><span class="tag">OWASP Top 10</span><span class="tag">Burp Suite</span><span class="tag">Reporting</span></div>
+  </div>
+</div></section>
+
+<section id="project"><div class="wrap">
+  <h2 class="rv">Projects</h2>
+  <div class="cards rv">
+    <article class="card big">
+      <div>
+        <h3>Real-Time SOC Alert Analysis and Incident Response</h3>
+        <ul class="pts" style="margin-top:14px">
+          <li>Analyzed security alerts in a simulated SOC environment.</li>
+          <li>Documented incident response procedures and security findings.</li>
+        </ul>
+        <div class="tags"><span class="tag">SOC</span><span class="tag">Alert triage</span><span class="tag">Incident response</span><span class="tag">Documentation</span></div>
+      </div>
+      <div class="sev" aria-hidden="true">
+        <div><i style="background:var(--crit)"></i>Detect</div>
+        <div><i style="background:var(--warn)"></i>Analyze</div>
+        <div><i style="background:var(--accent)"></i>Respond and document</div>
+      </div>
+    </article>
+    <article class="card big">
+      <div>
+        <h3>netscan: Python Port Scanner &amp; Host Discovery Tool</h3>
+        <ul class="pts" style="margin-top:14px">
+          <li>Built a multithreaded TCP port scanner and subnet host discovery tool in Python, using only the standard library.</li>
+          <li>Added banner grabbing, service detection and known-vulnerable version matching, with HTML and JSON reports.</li>
+          <li>Validated results against Nmap in a Kali Linux lab: both tools found the same open port.</li>
+        </ul>
+        <div class="tags"><span class="tag">Python</span><span class="tag">Sockets</span><span class="tag">Multithreading</span><span class="tag">Nmap</span><span class="tag">Kali Linux</span></div>
+        <p style="margin:20px 0 0"><a class="btn ghost" href="https://github.com/srinivasankaviya/netscan" target="_blank" rel="noopener">View on GitHub</a></p>
+      </div>
+      <div class="sev" aria-hidden="true">
+        <div><i style="background:var(--accent)"></i>Port scanning</div>
+        <div><i style="background:var(--warn)"></i>Banner grabbing</div>
+        <div><i style="background:var(--crit)"></i>Version matching</div>
+      </div>
+    </article>
+  </div>
+</div></section>
+
+<section id="certs"><div class="wrap">
+  <h2 class="rv">Certifications</h2>
+  <div class="cards rv">
+    <article class="card cert"><h3>Introduction to Cybersecurity</h3><span class="m">Cisco Networking Academy</span></article>
+    <article class="card cert"><h3>Networking Basics</h3><span class="m">Cisco Networking Academy</span></article>
+  </div>
+</div></section>
+
+<section id="contact"><div class="wrap">
+  <h2 class="rv">Contact</h2>
+  <p class="rv" style="color:var(--muted);margin:-16px 0 28px;max-width:52ch">Open to internships and VAPT opportunities. Send me a message.</p>
+  <div class="contact-list rv">
+    <a href="mailto:kaviyasrinivasan161@gmail.com"><small>Email</small><strong>kaviyasrinivasan161@gmail.com</strong></a>
+    <a href="https://www.linkedin.com/in/kaviya-srinivasan-cybersecurity" target="_blank" rel="noopener"><small>LinkedIn</small><strong>kaviya-srinivasan-cybersecurity</strong></a>
+    <a href="https://github.com/srinivasankaviya" target="_blank" rel="noopener"><small>GitHub</small><strong>srinivasankaviya</strong></a>
+    <button id="copy" type="button"><small>Copy email address</small><strong id="copyMsg">Click to copy</strong></button>
+  </div>
+</div></section>
+
+<footer><div class="wrap">
+  <span>© <span id="yr">2026</span> Kaviya S. Cybersecurity Student | VAPT Enthusiast.</span>
+  <span><a href="#top">Back to top</a></span>
+</div></footer>
+
+<script>
+// Skills
+var skills=[["Web Application VAPT",85],["OWASP Top 10",88],["Burp Suite",82],["Nmap",80],["Wireshark",72],["Linux",78],["Python Basics",60]];
+var grid=document.getElementById('skillGrid');
+skills.forEach(function(s){
+  var d=document.createElement('div');
+  d.innerHTML='<div class="sk-top"><b style="font-weight:500">'+s[0]+'</b><span>'+s[1]+'%</span></div><div class="bar" role="progressbar" aria-label="'+s[0]+'" aria-valuenow="'+s[1]+'" aria-valuemin="0" aria-valuemax="100"><div class="fill" data-w="'+s[1]+'"></div></div>';
+  grid.appendChild(d);
+});
+
+// Reveal on scroll + fill bars
+var io=new IntersectionObserver(function(es){
+  es.forEach(function(e){
+    if(e.isIntersecting){
+      e.target.classList.add('in');
+      e.target.querySelectorAll('.fill[data-w]').forEach(function(f){f.style.width=f.dataset.w+'%'});
+      io.unobserve(e.target);
+    }
+  });
+},{threshold:.15});
+document.querySelectorAll('.rv').forEach(function(el){io.observe(el)});
+
+// Nav
+var burger=document.querySelector('.burger'),links=document.querySelector('.links');
+burger.addEventListener('click',function(){var o=links.classList.toggle('open');burger.setAttribute('aria-expanded',o)});
+links.addEventListener('click',function(e){if(e.target.tagName==='A'){links.classList.remove('open');burger.setAttribute('aria-expanded',false)}});
+var navA=[].slice.call(document.querySelectorAll('.links a'));
+var so=new IntersectionObserver(function(es){
+  es.forEach(function(e){if(e.isIntersecting){navA.forEach(function(a){a.classList.toggle('on',a.getAttribute('href')==='#'+e.target.id)})}});
+},{rootMargin:'-45% 0px -50% 0px'});
+document.querySelectorAll('section[id]').forEach(function(s){so.observe(s)});
+
+// Copy email
+document.getElementById('copy').addEventListener('click',function(){
+  var m=document.getElementById('copyMsg');
+  function done(t){m.textContent=t;setTimeout(function(){m.textContent='Click to copy'},2000)}
+  try{navigator.clipboard.writeText('kaviyasrinivasan161@gmail.com').then(function(){done('Copied')},function(){done('Copy failed. Select the email above.')})}
+  catch(e){done('Copy failed. Select the email above.')}
+});
+document.getElementById('yr').textContent=new Date().getFullYear();
+
+var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+// Terminal typing
+var lines=[
+ ['p','$ nmap -sV target.local'],
+ ['m','Starting scan...'],
+ ['o','80/tcp   open  http'],
+ ['o','443/tcp  open  https'],
+ ['p','$ burp --scope owasp-top-10'],
+ ['w','[!] A03 Injection: input not sanitized'],
+ ['w','[!] A07 Weak session handling'],
+ ['c','[x] A01 Broken access control'],
+ ['p','$ report --export findings'],
+ ['o','Findings documented. Fixes recommended.']
+];
+var term=document.getElementById('term');
+function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;')}
+function render(n,partial){
+  var h='';
+  for(var i=0;i<n;i++)h+='<span class="'+lines[i][0]+'">'+esc(lines[i][1])+'</span>\n';
+  if(partial!==null)h+='<span class="'+lines[n][0]+'">'+esc(partial)+'</span><span class="cur"></span>';
+  else h+='<span class="p">$ </span><span class="cur"></span>';
+  term.innerHTML=h;
+}
+if(reduce){render(lines.length,null)}
+else{
+  (function run(i,c){
+    if(i>=lines.length){setTimeout(function(){run(0,0)},3500);return}
+    var t=lines[i][1],typed=lines[i][0]==='p';
+    if(typed){
+      render(i,t.slice(0,c));
+      if(c<t.length)setTimeout(function(){run(i,c+1)},38);
+      else setTimeout(function(){run(i+1,0)},350);
+    }else{
+      render(i+1,null);
+      setTimeout(function(){run(i+1,0)},300);
+    }
+  })(0,0);
+}
+
+// Network canvas
+(function(){
+  var cv=document.getElementById('net'),x=cv.getContext('2d'),pts=[],W,H;
+  function size(){W=cv.width=cv.offsetWidth;H=cv.height=cv.offsetHeight;
+    var n=Math.min(60,Math.floor(W*H/18000));pts=[];
+    for(var i=0;i<n;i++)pts.push({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.35,vy:(Math.random()-.5)*.35});}
+  function draw(){
+    x.clearRect(0,0,W,H);
+    pts.forEach(function(p){
+      if(!reduce){p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>W)p.vx*=-1;if(p.y<0||p.y>H)p.vy*=-1}
+      x.fillStyle='rgba(61,224,196,.7)';x.beginPath();x.arc(p.x,p.y,1.6,0,6.3);x.fill();
+    });
+    for(var i=0;i<pts.length;i++)for(var j=i+1;j<pts.length;j++){
+      var dx=pts[i].x-pts[j].x,dy=pts[i].y-pts[j].y,d=Math.sqrt(dx*dx+dy*dy);
+      if(d<130){x.strokeStyle='rgba(61,224,196,'+(.22*(1-d/130))+')';x.beginPath();x.moveTo(pts[i].x,pts[i].y);x.lineTo(pts[j].x,pts[j].y);x.stroke()}
+    }
+    if(!reduce)requestAnimationFrame(draw);
+  }
+  size();draw();
+  window.addEventListener('resize',function(){size();if(reduce)draw()});
+})();
+</script>
+</body>
+</html>
